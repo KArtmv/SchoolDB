@@ -1,4 +1,4 @@
-package ua.fixminded.javaspring.SchoolDB;
+package ua.foxminded.javaspring.schooldb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
