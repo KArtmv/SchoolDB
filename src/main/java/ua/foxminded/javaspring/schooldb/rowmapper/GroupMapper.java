@@ -5,14 +5,14 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import ua.foxminded.javaspring.schooldb.model.Groupe;
+import ua.foxminded.javaspring.schooldb.model.Group;
 
-public class GroupMapper implements RowMapper<Groupe> {
+public class GroupMapper implements RowMapper<Group> {
 
 	@Override
-	public Groupe mapRow(ResultSet rs, int rowNum) throws SQLException {
+	public Group mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-		return new Groupe(rs.getLong("group_id"), rs.getString("group_name"));
+		return new Group(rs.getLong("group_id"), rs.getString("group_name"));
 	}
 
 }

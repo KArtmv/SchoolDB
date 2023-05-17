@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import ua.foxminded.javaspring.schooldb.model.Groupe;
+import ua.foxminded.javaspring.schooldb.model.Group;
 import ua.foxminded.javaspring.schooldb.rowmapper.GroupMapper;
 
 @Component
@@ -30,7 +30,7 @@ public class GroupDAOimpl implements GroupDAO {
 	}
 
 	@Override
-	public List<Groupe> listOfGroups() {
+	public List<Group> listOfGroups() {
 		return jdbcTemplate.query(SQL_GET_ALL, mapper);
 	}
 
