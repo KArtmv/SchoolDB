@@ -2,7 +2,9 @@ package ua.foxminded.javaspring.schooldb;
 
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 
 import ua.foxminded.javaspring.schooldb.dao.CourseDAO;
 import ua.foxminded.javaspring.schooldb.dao.GroupDAO;
@@ -21,10 +23,11 @@ import ua.foxminded.javaspring.schooldb.output.ShowListOfCourses;
 import ua.foxminded.javaspring.schooldb.output.ShowListOfCoursesOfStudent;
 import ua.foxminded.javaspring.schooldb.output.ShowListOfGroups;
 
+@Component
 public class Starter {
-
 	private final AnnotationConfigApplicationContext contex;
 
+	@Autowired
 	public Starter(AnnotationConfigApplicationContext contex) {
 		this.contex = contex;
 	}
