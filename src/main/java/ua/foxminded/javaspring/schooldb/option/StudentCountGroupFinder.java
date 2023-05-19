@@ -1,9 +1,9 @@
 package ua.foxminded.javaspring.schooldb.option;
 
 import java.util.List;
-import java.util.Map;
 import ua.foxminded.javaspring.schooldb.dao.GroupDAO;
 import ua.foxminded.javaspring.schooldb.input.InputNumbers;
+import ua.foxminded.javaspring.schooldb.model.CountStudentsAtGroup;
 
 public class StudentCountGroupFinder {
 
@@ -20,13 +20,13 @@ public class StudentCountGroupFinder {
 
 		int count = numbers.inputNumbers();
 
-		List<Map<String, Object>> list = groupDAO.counterStudentsAtGroups(count);
+		List<CountStudentsAtGroup> list = groupDAO.counterStudentsAtGroups(count);
 
-		for (Map<String, Object> map : list) {
-			String groupName = map.get("group_name").toString();
-			int countAtGroup = Integer.parseInt(map.get("student_count").toString());
+		for (CountStudentsAtGroup course : list) {
+			int countAtGroup = course.getCount();
+			String groupName = course.getGroupName();
 
-			System.out.println(String.format("%d students at group: %s", countAtGroup, groupName));
+			System.out.println(String.format("%d students at group: %s.", countAtGroup, groupName));
 		}
 	}
 }
