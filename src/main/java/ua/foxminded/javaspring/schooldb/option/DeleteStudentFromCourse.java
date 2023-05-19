@@ -1,6 +1,5 @@
 package ua.foxminded.javaspring.schooldb.option;
 
-import java.sql.SQLException;
 import java.util.List;
 import ua.foxminded.javaspring.schooldb.dao.CourseDAO;
 import ua.foxminded.javaspring.schooldb.dao.StudentDAO;
@@ -26,7 +25,7 @@ public class DeleteStudentFromCourse {
 		this.coursesOfStudent = coursesOfStudent;
 	}
 
-	public void deleteFromCourse() throws SQLException {
+	public void deleteFromCourse() {
 		System.out.println("Enter id of student");
 
 		List<StudentToCourse> courses = studentDAO.listOfCoursesOfStudent(inputStudentId.inputStudentId());
