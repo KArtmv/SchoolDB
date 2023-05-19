@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import ua.foxminded.javaspring.schooldb.model.Course;
 import ua.foxminded.javaspring.schooldb.model.Student;
@@ -12,9 +12,8 @@ import ua.foxminded.javaspring.schooldb.model.StudentToCourse;
 import ua.foxminded.javaspring.schooldb.rowmapper.CourseMapper;
 import ua.foxminded.javaspring.schooldb.rowmapper.StudentToCourseMapper;
 
-@Component
+@Repository
 public class CourseDAOImpl implements CourseDAO {
-
 	private final JdbcTemplate jdbcTemplate;
 
 	@Autowired
