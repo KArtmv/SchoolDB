@@ -7,7 +7,7 @@ import ua.foxminded.javaspring.schooldb.model.StudentToCourse;
 
 public interface StudentDAO {
 
-	Student getStudentById(Student studentId);
+//	Student getStudentById(Student studentId);
 
 	boolean deleteStudent(Student student);
 
