@@ -1,4 +1,4 @@
-package ua.foxminded.javaspring.schooldb;
+package ua.foxminded.javaspring.schooldb.config;
 
 import javax.sql.DataSource;
 
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 @Configuration
-@ComponentScan()
+@ComponentScan
 public class SpringJdbcConfig {
 	@Bean
 	public DataSource postDataSource() {
@@ -19,6 +19,5 @@ public class SpringJdbcConfig {
 		dataSource.setPassword("admin");
 		dataSource.setSchema("public");
 		return dataSource;
-
 	}
 }
