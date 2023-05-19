@@ -6,21 +6,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import ua.foxminded.javaspring.schooldb.model.Student;
 import ua.foxminded.javaspring.schooldb.model.StudentToCourse;
-import ua.foxminded.javaspring.schooldb.rowmapper.StudentMapper;
 import ua.foxminded.javaspring.schooldb.rowmapper.StudentToCourseMapper;
 
-@Component
+@Repository
 public class StudentDAOImpl implements StudentDAO {
-
-	@Autowired
 	private final JdbcTemplate jdbcTemplate;
 
+	@Autowired
+	public StudentDAOImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
 	private final String SQL_DELETE_STUDENT = "delete from students where student_id=?";
-	private final String SQL_FIND_STUDENT_BY_ID = "select * from students where student_id=?";
 	private final String SQL_ADD_NEW_STUDENT = "insert into students (first_name, last_name, group_id) values (?, ?, ?)";
 	private final String SQL_CHECK_IS_STUDENT_EXIST = "select student_id from students where student_id = ?";
 	private final String SQL_COURSES_OF_STUDENT = "select sc.enrollment_id, s.first_name, s.last_name, c.course_name, c.course_description\n"
@@ -28,19 +29,7 @@ public class StudentDAOImpl implements StudentDAO {
 			+ "join courses c on sc.course_id = c.course_id\n" 
 			+ "where s.student_id=?";
 
-	private final RowMapper<Student> mapper = new StudentMapper();
 	private final RowMapper<StudentToCourse> courseMapper = new StudentToCourseMapper();
-
-	@Autowired
-	public StudentDAOImpl(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
-
-	@Override
-	public Student getStudentById(Student studentId) {
-		List<Student> students = jdbcTemplate.query(SQL_FIND_STUDENT_BY_ID, mapper, studentId.getStudentId());
-		return students.isEmpty() ? null : students.get(0);
-	}
 
 	@Override
 	public boolean deleteStudent(Student student) {
