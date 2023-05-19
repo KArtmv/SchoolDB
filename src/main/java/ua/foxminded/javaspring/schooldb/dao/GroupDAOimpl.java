@@ -1,20 +1,23 @@
 package ua.foxminded.javaspring.schooldb.dao;
 
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
+import ua.foxminded.javaspring.schooldb.model.CountStudentsAtGroup;
 import ua.foxminded.javaspring.schooldb.model.Group;
+import ua.foxminded.javaspring.schooldb.rowmapper.CountStudentsAtGroupMapper;
 import ua.foxminded.javaspring.schooldb.rowmapper.GroupMapper;
 
-@Component
+@Repository
 public class GroupDAOimpl implements GroupDAO {
+	private final JdbcTemplate jdbcTemplate;
 
 	@Autowired
-	private final JdbcTemplate jdbcTemplate;
+	public GroupDAOimpl(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 
 	private final String SQL_GET_ALL = "select * from groups";
 	private final String SQL_GET_GROUP_BY_COUNT = "SELECT g.group_id, g.group_name, COUNT(s.student_id) AS student_count\n"
@@ -23,11 +26,7 @@ public class GroupDAOimpl implements GroupDAO {
 			+ "HAVING COUNT(s.student_id) <=?";
 
 	private final GroupMapper mapper = new GroupMapper();
-
-	@Autowired
-	public GroupDAOimpl(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
+	private final CountStudentsAtGroupMapper countMapper = new CountStudentsAtGroupMapper();
 
 	@Override
 	public List<Group> listOfGroups() {
@@ -35,7 +34,7 @@ public class GroupDAOimpl implements GroupDAO {
 	}
 
 	@Override
-	public List<Map<String, Object>> counterStudentsAtGroups(int count) {
-		return jdbcTemplate.queryForList(SQL_GET_GROUP_BY_COUNT, count);
+	public List<CountStudentsAtGroup> counterStudentsAtGroups(int count) {
+		return jdbcTemplate.query(SQL_GET_GROUP_BY_COUNT, countMapper, count);
 	}
 }
