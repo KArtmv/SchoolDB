@@ -11,10 +11,10 @@ public class StudentMapper implements RowMapper<Student> {
 
 	@Override
 	public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
-
-		return new Student(rs.getLong("student_id"),
+		return new Student(
+				rs.getLong("student_id"),
 				rs.getString("first_name"),
 				rs.getString("last_name"),
-				rs.getLong("group_id"));
+				rs.getString("group_name"));
 	}
 }
