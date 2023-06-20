@@ -2,6 +2,7 @@ package ua.foxminded.javaspring.schooldb.dao;
 
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import ua.foxminded.javaspring.schooldb.model.Student;
 import ua.foxminded.javaspring.schooldb.model.StudentToCourse;
+import ua.foxminded.javaspring.schooldb.rowmapper.StudentMapper;
 import ua.foxminded.javaspring.schooldb.rowmapper.StudentToCourseMapper;
 
 @Repository
@@ -21,6 +23,11 @@ public class StudentDAOImpl implements StudentDAO {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
+//	private final String SQL_FIND_STUDENT_BY_ID = "select * from students where student_id=?";
+			private final String SQL_FIND_STUDENT_BY_ID = "select *\n"
+			+ "from students s\n"
+			+ "join groups g on s.group_id = g.group_id\n"
+			+ "where s.student_id=?";
 	private final String SQL_DELETE_STUDENT = "delete from students where student_id=?";
 	private final String SQL_ADD_NEW_STUDENT = "insert into students (first_name, last_name, group_id) values (?, ?, ?)";
 	private final String SQL_CHECK_IS_STUDENT_EXIST = "select student_id from students where student_id = ?";
@@ -29,7 +36,15 @@ public class StudentDAOImpl implements StudentDAO {
 			+ "join courses c on sc.course_id = c.course_id\n" 
 			+ "where s.student_id=?";
 
+
+	private final RowMapper<Student> mapper = new StudentMapper();
 	private final RowMapper<StudentToCourse> courseMapper = new StudentToCourseMapper();
+
+	@Override
+	public Optional<Student> getStudentById(Student studentId) {
+		Student students = jdbcTemplate.queryForObject(SQL_FIND_STUDENT_BY_ID, mapper, studentId.getStudentId());
+		return Optional.ofNullable(students);
+	}
 
 	@Override
 	public boolean deleteStudent(Student student) {
