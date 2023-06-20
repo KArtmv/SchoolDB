@@ -21,7 +21,8 @@ public class GroupDAOimpl implements GroupDAO {
 
 	private final String SQL_GET_ALL = "select * from groups";
 	private final String SQL_GET_GROUP_BY_COUNT = "SELECT g.group_id, g.group_name, COUNT(s.student_id) AS student_count\n"
-			+ "FROM groups g\n" + "LEFT JOIN students s ON g.group_id = s.group_id\n" 
+			+ "FROM groups g\n"
+			+ "LEFT JOIN students s ON g.group_id = s.group_id\n" 
 			+ "GROUP BY g.group_id\n"
 			+ "HAVING COUNT(s.student_id) <=?";
 
