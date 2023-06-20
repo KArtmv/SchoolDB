@@ -11,7 +11,8 @@ public class StudentToCourseMapper implements RowMapper<StudentToCourse> {
 
 	@Override
 	public StudentToCourse mapRow(ResultSet rs, int rowNum) throws SQLException {
-		return new StudentToCourse(rs.getLong("enrollment_id"),
+		return new StudentToCourse(
+				rs.getLong("enrollment_id"),
 				rs.getString("first_name"),
 				rs.getString("last_name"),
 				rs.getString("course_name"),
