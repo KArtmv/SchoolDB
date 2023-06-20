@@ -6,6 +6,7 @@ public class Student {
 	private String firstName;
 	private String lastrName;
 	private long groupId;
+	private String groupName;
 
 	public Student() {
 	}
@@ -14,11 +15,11 @@ public class Student {
 		this.studentId = studentId;
 	}
 
-	public Student(long studentId, String firstName, String lastrName, long groupId) {
+	public Student(long studentId, String firstName, String lastrName, String groupName) {
 		this.studentId = studentId;
 		this.firstName = firstName;
 		this.lastrName = lastrName;
-		this.groupId = groupId;
+		this.groupName = groupName;
 	}
 
 	public Student(String firstName, String lastrName, long groupId) {
@@ -31,15 +32,19 @@ public class Student {
 		return studentId;
 	}
 
-	public long getGroupId() {
-		return groupId;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
 
 	public String getLastrName() {
 		return lastrName;
+	}
+
+	public long getGroupId() {
+		return groupId;
+	}
+
+	public String getGroupName() {
+		return groupName;
 	}
 }
