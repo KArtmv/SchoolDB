@@ -1,4 +1,4 @@
-package ua.foxminded.javaspring.schooldb;
+package ua.foxminded.javaspring.schooldb.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -9,11 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import ua.foxminded.javaspring.schooldb.dao.CourseDAO;
-import ua.foxminded.javaspring.schooldb.dao.CourseDAOImpl;
+import ua.foxminded.javaspring.schooldb.SchoolDbApplicationTests;
 import ua.foxminded.javaspring.schooldb.model.Course;
 
-class CourseDAOTests extends SchoolDbApplicationTests {
+public class CourseDAOTests extends SchoolDbApplicationTests {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
