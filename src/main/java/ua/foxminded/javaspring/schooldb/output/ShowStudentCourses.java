@@ -2,15 +2,18 @@ package ua.foxminded.javaspring.schooldb.output;
 
 import java.util.List;
 
-import ua.foxminded.javaspring.schooldb.model.StudentToCourse;
+import org.springframework.stereotype.Component;
 
-public class ShowListOfCoursesOfStudent {
+import ua.foxminded.javaspring.schooldb.model.StudentAtCourse;
 
-	public void showListOfCoursesOfStudent(List<StudentToCourse> courses) {
+@Component
+public class ShowStudentCourses {
+
+	public void coursesList(List<StudentAtCourse> courses) {
 		int couter = 0;
 
-		for (StudentToCourse course : courses) {
-			long enrollmentId = course.getEnrollmentId();
+		for (StudentAtCourse course : courses) {
+			long enrollmentId = course.getEnrollmentID();
 			String firstName = course.getFirstName();
 			String lastName = course.getLastName();
 			String courseName = course.getCourseName();
