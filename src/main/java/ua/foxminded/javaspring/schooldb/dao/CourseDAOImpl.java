@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import ua.foxminded.javaspring.schooldb.model.Course;
 import ua.foxminded.javaspring.schooldb.model.Student;
-import ua.foxminded.javaspring.schooldb.model.StudentToCourse;
+import ua.foxminded.javaspring.schooldb.model.StudentAtCourse;
 import ua.foxminded.javaspring.schooldb.rowmapper.CourseMapper;
-import ua.foxminded.javaspring.schooldb.rowmapper.StudentToCourseMapper;
+import ua.foxminded.javaspring.schooldb.rowmapper.StudentAtCourseMapper;
 
 @Repository
 public class CourseDAOImpl implements CourseDAO {
@@ -32,7 +32,7 @@ public class CourseDAOImpl implements CourseDAO {
 	private final String SQL_DELETE_STUDENT_FROM_THE_COURSE = "delete from studenttocourse where enrollment_id = ?";
 
 	CourseMapper mapper = new CourseMapper();
-	StudentToCourseMapper toCourseMapper = new StudentToCourseMapper();
+	StudentAtCourseMapper toCourseMapper = new StudentAtCourseMapper();
 
 	@Override
 	public List<Course> listOfCourse() {
@@ -40,22 +40,22 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 
 	@Override
-	public List<StudentToCourse> listOfStudentsAtCourse(Course courseId) {
-		return jdbcTemplate.query(SQL_GET_LIST_STUDENTS_AT_COURSE, toCourseMapper, courseId.getCourseId());
+	public List<StudentAtCourse> listOfStudentsAtCourse(Course courseID) {
+		return jdbcTemplate.query(SQL_GET_LIST_STUDENTS_AT_COURSE, toCourseMapper, courseID.getCourseID());
 	}
 
 	@Override
-	public boolean deleteStudentFromTheirAllCourses(Student studentId) {
-		return jdbcTemplate.update(SQL_DELETE_STUDENT_FROM_COURSES, studentId.getStudentId()) > 0;
+	public boolean deleteStudentFromTheirAllCourses(Student studentID) {
+		return jdbcTemplate.update(SQL_DELETE_STUDENT_FROM_COURSES, studentID.getStudentID()) > 0;
 	}
 
 	@Override
-	public boolean addStudentAtCourse(Student studentId, Course courseId) {
-		return jdbcTemplate.update(SQL_ADD_STUDENTS_AT_COURSE, studentId.getStudentId(), courseId.getCourseId()) > 0;
+	public boolean addStudentToCourse(Student studentID, Course courseID) {
+		return jdbcTemplate.update(SQL_ADD_STUDENTS_AT_COURSE, studentID.getStudentID(), courseID.getCourseID()) > 0;
 	}
 
 	@Override
-	public boolean deleteStudentFromTheCourse(StudentToCourse enrollmenId) {
-		return jdbcTemplate.update(SQL_DELETE_STUDENT_FROM_THE_COURSE, enrollmenId.getEnrollmentId()) > 0;
+	public boolean deleteStudentFromTheCourse(StudentAtCourse enrollmenID) {
+		return jdbcTemplate.update(SQL_DELETE_STUDENT_FROM_THE_COURSE, enrollmenID.getEnrollmentID()) > 0;
 	}
 }

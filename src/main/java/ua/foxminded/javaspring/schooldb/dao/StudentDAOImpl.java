@@ -10,9 +10,9 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import ua.foxminded.javaspring.schooldb.model.Student;
-import ua.foxminded.javaspring.schooldb.model.StudentToCourse;
+import ua.foxminded.javaspring.schooldb.model.StudentAtCourse;
 import ua.foxminded.javaspring.schooldb.rowmapper.StudentMapper;
-import ua.foxminded.javaspring.schooldb.rowmapper.StudentToCourseMapper;
+import ua.foxminded.javaspring.schooldb.rowmapper.StudentAtCourseMapper;
 
 @Repository
 public class StudentDAOImpl implements StudentDAO {
@@ -23,8 +23,7 @@ public class StudentDAOImpl implements StudentDAO {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-//	private final String SQL_FIND_STUDENT_BY_ID = "select * from students where student_id=?";
-			private final String SQL_FIND_STUDENT_BY_ID = "select *\n"
+	private final String SQL_FIND_STUDENT_BY_ID = "select *\n"
 			+ "from students s\n"
 			+ "join groups g on s.group_id = g.group_id\n"
 			+ "where s.student_id=?";
@@ -38,32 +37,32 @@ public class StudentDAOImpl implements StudentDAO {
 
 
 	private final RowMapper<Student> mapper = new StudentMapper();
-	private final RowMapper<StudentToCourse> courseMapper = new StudentToCourseMapper();
+	private final RowMapper<StudentAtCourse> courseMapper = new StudentAtCourseMapper();
 
 	@Override
-	public Optional<Student> getStudentById(Student studentId) {
-		Student students = jdbcTemplate.queryForObject(SQL_FIND_STUDENT_BY_ID, mapper, studentId.getStudentId());
+	public Optional<Student> getStudentByID(Student studentID) {
+		Student students = jdbcTemplate.queryForObject(SQL_FIND_STUDENT_BY_ID, mapper, studentID.getStudentID());
 		return Optional.ofNullable(students);
 	}
 
 	@Override
 	public boolean deleteStudent(Student student) {
-		return jdbcTemplate.update(SQL_DELETE_STUDENT, student.getStudentId()) > 0;
+		return jdbcTemplate.update(SQL_DELETE_STUDENT, student.getStudentID()) > 0;
 	}
 
 	@Override
 	public boolean createStudent(Student student) {
 		return jdbcTemplate.update(SQL_ADD_NEW_STUDENT, student.getFirstName(), student.getLastrName(),
-				student.getGroupId()) > 0;
+				student.getGroupID()) > 0;
 	}
 
 	@Override
-	public boolean isValidStudentId(Student studentId) {
-		return jdbcTemplate.query(SQL_CHECK_IS_STUDENT_EXIST, ResultSet::next, studentId.getStudentId());
+	public boolean isValidStudentID(Student studentID) {
+		return jdbcTemplate.query(SQL_CHECK_IS_STUDENT_EXIST, ResultSet::next, studentID.getStudentID());
 	}
 
 	@Override
-	public List<StudentToCourse> listOfCoursesOfStudent(Student studentId) {
-		return jdbcTemplate.query(SQL_COURSES_OF_STUDENT, courseMapper, studentId.getStudentId());
+	public List<StudentAtCourse> listOfCoursesOfStudent(Student studentID) {
+		return jdbcTemplate.query(SQL_COURSES_OF_STUDENT, courseMapper, studentID.getStudentID());
 	}
 }
