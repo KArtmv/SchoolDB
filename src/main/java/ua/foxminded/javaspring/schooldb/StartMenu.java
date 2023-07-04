@@ -1,5 +1,8 @@
 package ua.foxminded.javaspring.schooldb;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class StartMenu {
 
 	public void startMenu() {
@@ -17,5 +20,4 @@ public class StartMenu {
 				+ "| x.  Exit                                                       |\n"
 				+ "|================================================================|");
 	}
-
 }
