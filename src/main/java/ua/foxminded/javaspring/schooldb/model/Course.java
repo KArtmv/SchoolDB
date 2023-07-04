@@ -2,12 +2,12 @@ package ua.foxminded.javaspring.schooldb.model;
 
 public class Course {
 
-	private long courseId;
+	private Long courseID;
 	private String courseName;
 	private String courseDescription;
 
-	public Course(long courseId) {
-		this.courseId = courseId;
+	public Course(Long courseID) {
+		this.courseID = courseID;
 	}
 
 	public Course(String courseName, String courseDescription) {
@@ -15,14 +15,14 @@ public class Course {
 		this.courseDescription = courseDescription;
 	}
 
-	public Course(long courseId, String courseName, String courseDescription) {
-		this.courseId = courseId;
+	public Course(Long courseID, String courseName, String courseDescription) {
+		this.courseID = courseID;
 		this.courseName = courseName;
 		this.courseDescription = courseDescription;
 	}
 
-	public long getCourseId() {
-		return courseId;
+	public Long getCourseID() {
+		return courseID;
 	}
 
 	public String getCourseName() {

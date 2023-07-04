@@ -1,27 +1,27 @@
 package ua.foxminded.javaspring.schooldb.model;
 
-public class StudentToCourse {
+public class StudentAtCourse {
 
-	private long enrollmentId;
+	private Long enrollmentID;
 	private String firstName;
 	private String lastName;
 	private String courseName;
 	private String courseDescription;
 
-	public StudentToCourse(long enrollmentId) {
-		this.enrollmentId = enrollmentId;
+	public StudentAtCourse(Long enrollmentID) {
+		this.enrollmentID = enrollmentID;
 	}
 
-	public StudentToCourse(String firstName, String lastName, String courseName, String courseDescription) {
+	public StudentAtCourse(String firstName, String lastName, String courseName, String courseDescription) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.courseName = courseName;
 		this.courseDescription = courseDescription;
 	}
 
-	public StudentToCourse(long enrollmentId, String firstName, String lastName, String courseName,
+	public StudentAtCourse(Long enrollmentID, String firstName, String lastName, String courseName,
 			String courseDescription) {
-		this.enrollmentId = enrollmentId;
+		this.enrollmentID = enrollmentID;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.courseName = courseName;
@@ -44,7 +44,7 @@ public class StudentToCourse {
 		return courseDescription;
 	}
 
-	public long getEnrollmentId() {
-		return enrollmentId;
+	public Long getEnrollmentID() {
+		return enrollmentID;
 	}
 }

@@ -2,24 +2,24 @@ package ua.foxminded.javaspring.schooldb.model;
 
 public class Group {
 
-	private long groupId;
+	private Long groupID;
 	private String groupName;
 
-	public Group(long groupId) {
-		this.groupId = groupId;
+	public Group(Long groupID) {
+		this.groupID = groupID;
 	}
 
 	public Group(String groupName) {
 		this.groupName = groupName;
 	}
 
-	public Group(long groupId, String groupName) {
-		this.groupId = groupId;
+	public Group(Long groupId, String groupName) {
+		this.groupID = groupId;
 		this.groupName = groupName;
 	}
 
-	public long getGroupId() {
-		return groupId;
+	public long getGroupID() {
+		return groupID;
 	}
 
 	public String getGroupName() {

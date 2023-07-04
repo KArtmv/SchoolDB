@@ -2,34 +2,31 @@ package ua.foxminded.javaspring.schooldb.model;
 
 public class Student {
 
-	private long studentId;
+	private Long studentID;
 	private String firstName;
 	private String lastrName;
-	private long groupId;
+	private Long groupID;
 	private String groupName;
 
-	public Student() {
+	public Student(Long studentID) {
+		this.studentID = studentID;
 	}
 
-	public Student(long studentId) {
-		this.studentId = studentId;
-	}
-
-	public Student(long studentId, String firstName, String lastrName, String groupName) {
-		this.studentId = studentId;
+	public Student(Long studentID, String firstName, String lastrName, String groupName) {
+		this.studentID = studentID;
 		this.firstName = firstName;
 		this.lastrName = lastrName;
 		this.groupName = groupName;
 	}
 
-	public Student(String firstName, String lastrName, long groupId) {
+	public Student(String firstName, String lastrName, Long groupID) {
 		this.firstName = firstName;
 		this.lastrName = lastrName;
-		this.groupId = groupId;
+		this.groupID = groupID;
 	}
 
-	public long getStudentId() {
-		return studentId;
+	public Long getStudentID() {
+		return studentID;
 	}
 
 	public String getFirstName() {
@@ -40,8 +37,8 @@ public class Student {
 		return lastrName;
 	}
 
-	public long getGroupId() {
-		return groupId;
+	public Long getGroupID() {
+		return groupID;
 	}
 
 	public String getGroupName() {
