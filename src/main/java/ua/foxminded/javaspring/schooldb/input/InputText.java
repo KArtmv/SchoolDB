@@ -2,15 +2,18 @@ package ua.foxminded.javaspring.schooldb.input;
 
 import java.util.Scanner;
 
-public class InputData {
+import org.springframework.stereotype.Component;
+
+@Component
+public class InputText {
 
 	private final Scanner scanner;
 
-	public InputData(Scanner scanner) {
+	public InputText(Scanner scanner) {
 		this.scanner = scanner;
 	}
 
-	public String inputData() {
+	public String input() {
 		boolean isTextCorrect = false;
 
 		String input = "";
