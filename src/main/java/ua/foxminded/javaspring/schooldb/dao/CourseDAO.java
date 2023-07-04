@@ -2,22 +2,19 @@ package ua.foxminded.javaspring.schooldb.dao;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import ua.foxminded.javaspring.schooldb.model.Course;
 import ua.foxminded.javaspring.schooldb.model.Student;
-import ua.foxminded.javaspring.schooldb.model.StudentToCourse;
+import ua.foxminded.javaspring.schooldb.model.StudentAtCourse;
 
-@Repository
 public interface CourseDAO {
 
 	List<Course> listOfCourse();
 
-	List<StudentToCourse> listOfStudentsAtCourse(Course courseId);
+	List<StudentAtCourse> listOfStudentsAtCourse(Course courseID);
 
-	boolean deleteStudentFromTheirAllCourses(Student studentId);
+	boolean deleteStudentFromTheirAllCourses(Student studentID);
 
-	boolean addStudentAtCourse(Student studentId, Course courseId);
+	boolean addStudentToCourse(Student studentID, Course courseID);
 
-	boolean deleteStudentFromTheCourse(StudentToCourse enrollmenId);
+	boolean deleteStudentFromTheCourse(StudentAtCourse enrollmenID);
 }
