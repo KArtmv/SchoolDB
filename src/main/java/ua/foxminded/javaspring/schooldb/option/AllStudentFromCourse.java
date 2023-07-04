@@ -1,36 +1,40 @@
 package ua.foxminded.javaspring.schooldb.option;
 
 import java.util.List;
+
+import org.springframework.stereotype.Component;
+
 import ua.foxminded.javaspring.schooldb.dao.CourseDAO;
 import ua.foxminded.javaspring.schooldb.input.InputNumbers;
 import ua.foxminded.javaspring.schooldb.model.Course;
-import ua.foxminded.javaspring.schooldb.model.StudentToCourse;
-import ua.foxminded.javaspring.schooldb.output.ShowListOfCourses;
+import ua.foxminded.javaspring.schooldb.model.StudentAtCourse;
+import ua.foxminded.javaspring.schooldb.output.ShowCoursesList;
 
+@Component
 public class AllStudentFromCourse {
 
 	private final CourseDAO courseDAO;
-	private final ShowListOfCourses listOfCourses;
-	private final InputNumbers inputNumbers;
+	private final ShowCoursesList listOfCourses;
+	private final InputNumbers number;
 
-	public AllStudentFromCourse(CourseDAO courseDAO, ShowListOfCourses listOfCourses, InputNumbers inputNumbers) {
+	public AllStudentFromCourse(CourseDAO courseDAO, ShowCoursesList listOfCourses, InputNumbers number) {
 		this.courseDAO = courseDAO;
 		this.listOfCourses = listOfCourses;
-		this.inputNumbers = inputNumbers;
+		this.number = number;
 	}
 
 	public void findAllStudentsAtCourse() {
 		System.out.println("Select a course from the list");
 
-		listOfCourses.showListofCourses();
+		listOfCourses.coursesList();
 
-		int inputNumber = inputNumbers.inputNumbers();
+		Course inputCourseID = new Course(Long.valueOf(number.input()));
 
-		List<StudentToCourse> list = courseDAO.listOfStudentsAtCourse(new Course(inputNumber));
+		List<StudentAtCourse> list = courseDAO.listOfStudentsAtCourse(inputCourseID);
 
 		int counter = 1;
 
-		for (StudentToCourse studentsToCourse : list) {
+		for (StudentAtCourse studentsToCourse : list) {
 			String firstName = studentsToCourse.getFirstName();
 			String lastName = studentsToCourse.getLastName();
 			String courseName = studentsToCourse.getCourseName();
