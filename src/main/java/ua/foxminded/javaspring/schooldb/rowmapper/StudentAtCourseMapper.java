@@ -5,13 +5,13 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import ua.foxminded.javaspring.schooldb.model.StudentToCourse;
+import ua.foxminded.javaspring.schooldb.model.StudentAtCourse;
 
-public class StudentToCourseMapper implements RowMapper<StudentToCourse> {
+public class StudentAtCourseMapper implements RowMapper<StudentAtCourse> {
 
 	@Override
-	public StudentToCourse mapRow(ResultSet rs, int rowNum) throws SQLException {
-		return new StudentToCourse(
+	public StudentAtCourse mapRow(ResultSet rs, int rowNum) throws SQLException {
+		return new StudentAtCourse(
 				rs.getLong("enrollment_id"),
 				rs.getString("first_name"),
 				rs.getString("last_name"),
