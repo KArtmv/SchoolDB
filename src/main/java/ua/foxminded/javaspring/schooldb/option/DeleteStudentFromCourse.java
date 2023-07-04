@@ -1,42 +1,47 @@
 package ua.foxminded.javaspring.schooldb.option;
 
 import java.util.List;
+
+import org.springframework.stereotype.Component;
+
 import ua.foxminded.javaspring.schooldb.dao.CourseDAO;
 import ua.foxminded.javaspring.schooldb.dao.StudentDAO;
 import ua.foxminded.javaspring.schooldb.input.InputNumbers;
-import ua.foxminded.javaspring.schooldb.input.InputStudentId;
-import ua.foxminded.javaspring.schooldb.model.StudentToCourse;
-import ua.foxminded.javaspring.schooldb.output.ShowListOfCoursesOfStudent;
+import ua.foxminded.javaspring.schooldb.input.InputStudentID;
+import ua.foxminded.javaspring.schooldb.model.Student;
+import ua.foxminded.javaspring.schooldb.model.StudentAtCourse;
+import ua.foxminded.javaspring.schooldb.output.ShowStudentCourses;
 
+@Component
 public class DeleteStudentFromCourse {
 
 	private final CourseDAO courseDAO;
 	private final StudentDAO studentDAO;
-	private final InputStudentId inputStudentId;
+	private final InputStudentID inputStudentID;
 	private final InputNumbers numbers;
-	private final ShowListOfCoursesOfStudent coursesOfStudent;
+	private final ShowStudentCourses coursesOfStudent;
 
-	public DeleteStudentFromCourse(CourseDAO courseDAO, StudentDAO studentDAO, InputStudentId inputStudentId,
-			InputNumbers numbers, ShowListOfCoursesOfStudent coursesOfStudent) {
+	public DeleteStudentFromCourse(CourseDAO courseDAO, StudentDAO studentDAO, InputStudentID inputStudentID,
+			InputNumbers numbers, ShowStudentCourses coursesOfStudent) {
 		this.courseDAO = courseDAO;
 		this.studentDAO = studentDAO;
-		this.inputStudentId = inputStudentId;
+		this.inputStudentID = inputStudentID;
 		this.numbers = numbers;
 		this.coursesOfStudent = coursesOfStudent;
 	}
 
 	public void deleteFromCourse() {
-		System.out.println("Enter id of student");
+		System.out.println("Enter student ID");
+		Student inputID = inputStudentID.inputID();
 
-		List<StudentToCourse> courses = studentDAO.listOfCoursesOfStudent(inputStudentId.inputStudentId());
+		List<StudentAtCourse> courses = studentDAO.listOfCoursesOfStudent(inputID);
+		coursesOfStudent.coursesList(courses);
 
-		coursesOfStudent.showListOfCoursesOfStudent(courses);
+		System.out.println("Enter the course ID from which the student should be removed");
 
-		System.out.println("Enter the id number of the course from which the student should be removed");
+		StudentAtCourse inputCourseID = new StudentAtCourse(Long.valueOf(numbers.input()));
+		boolean deleted = courseDAO.deleteStudentFromTheCourse(inputCourseID);
 
-		int enrollmentId = numbers.inputNumbers();
-
-		boolean deleted = courseDAO.deleteStudentFromTheCourse(new StudentToCourse(enrollmentId));
 		if (deleted) {
 			System.out.println("Student removed from course");
 		}
