@@ -4,3 +4,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/schoolDB
     username: admin
     password: admin
+  flyway:
+    enabled: true
+    validate-on-migrate: true
