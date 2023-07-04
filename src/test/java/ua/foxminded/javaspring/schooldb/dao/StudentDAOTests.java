@@ -1,4 +1,4 @@
-package ua.foxminded.javaspring.schooldb;
+package ua.foxminded.javaspring.schooldb.dao;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Optional;
@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import ua.foxminded.javaspring.schooldb.dao.StudentDAO;
-import ua.foxminded.javaspring.schooldb.dao.StudentDAOImpl;
+
+import ua.foxminded.javaspring.schooldb.SchoolDbApplicationTests;
 import ua.foxminded.javaspring.schooldb.model.Student;
 
 @TestMethodOrder(OrderAnnotation.class)
-class StudentDAOTests extends SchoolDbApplicationTests {
+public class StudentDAOTests extends SchoolDbApplicationTests {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -28,17 +28,16 @@ class StudentDAOTests extends SchoolDbApplicationTests {
 	@Test
 	@Order(1)
 	void createStudent_test() {
-		Student stdnt = new Student("Maya", "Patel", 1);
+		Student stdnt = new Student("Maya", "Patel", 1L);
 		assertThat(studentDAO.createStudent(stdnt)).isTrue();
 	}
 
 	@Test
 	void getStudentByIdTest() {
-		Optional<Student> student = studentDAO.getStudentById(new Student(1));
+		Optional<Student> student = studentDAO.getStudentByID(new Student(1L));
 		if (student.isPresent()) {
 			Student resultStudent = student.get();
-			assertThat(resultStudent).usingRecursiveComparison()
-					.isEqualTo(new Student(1, "Maya", "Patel", "YS-27"));
+			assertThat(resultStudent).usingRecursiveComparison().isEqualTo(new Student(1L, "Maya", "Patel", "YS-27"));
 		}
 	}
 }
