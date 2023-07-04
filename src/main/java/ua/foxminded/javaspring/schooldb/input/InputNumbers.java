@@ -2,6 +2,9 @@ package ua.foxminded.javaspring.schooldb.input;
 
 import java.util.Scanner;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class InputNumbers {
 
 	private final Scanner scanner;
@@ -10,7 +13,7 @@ public class InputNumbers {
 		this.scanner = scanner;
 	}
 
-	public int inputNumbers() {
+	public int input() {
 		boolean isInputCorrect = false;
 
 		String input = "";
