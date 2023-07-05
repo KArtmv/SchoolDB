@@ -12,11 +12,13 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import ua.foxminded.javaspring.schooldb.model.Student;
+
 @RunWith(MockitoJUnitRunner.class)
-public class InputDataTest {
+public class InputStudentIDTest {
 
 	@Mock
-	private InputText inputData;
+	private InputStudentID mockStudentID;
 
 	@BeforeEach
 	void init() {
@@ -24,15 +26,15 @@ public class InputDataTest {
 	}
 
 	@Test
-		void checkInputNumbers() {
-			when(inputData.input()).thenReturn("test");
-			
-			String result = inputData.input();
-			
-			assertNotNull(result);
-			assertEquals("test", result);
-			
-			verify(inputData).input();
+	void checkInputStudentId() {
+		when(mockStudentID.inputID()).thenReturn(new Student(162L));
 		
+		Student studentID = mockStudentID.inputID();
+		
+		assertNotNull(studentID);
+		assertEquals(162, studentID.getStudentID());
+		
+		verify(mockStudentID).inputID();
 	}
+
 }

@@ -12,7 +12,7 @@ import org.mockito.Mockito;
 import ua.foxminded.javaspring.schooldb.model.Student;
 import ua.foxminded.javaspring.schooldb.output.ShowGroupsList;
 
-public class InputDataOfStudentTest {
+public class InputStudentDataTest {
 
 	@Test
 	void checkInputDataOfStudentTest() {
