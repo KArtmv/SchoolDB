@@ -2,6 +2,7 @@ package ua.foxminded.javaspring.schooldb.input;
 
 import org.springframework.stereotype.Component;
 
+import ua.foxminded.javaspring.schooldb.model.Group;
 import ua.foxminded.javaspring.schooldb.model.Student;
 import ua.foxminded.javaspring.schooldb.output.ShowGroupsList;
 
@@ -10,12 +11,12 @@ public class InputStudentData {
 
 	private final ShowGroupsList listOfGroups;
 	private final InputText inputText;
-	private final InputNumbers numbers;
+	private final InputGroupID inputGroupID;
 
-	public InputStudentData(ShowGroupsList listOfGroups, InputText inputData, InputNumbers numbers) {
+	public InputStudentData(ShowGroupsList listOfGroups, InputText inputData, InputGroupID inputGroupID) {
 		this.listOfGroups = listOfGroups;
 		this.inputText = inputData;
-		this.numbers = numbers;
+		this.inputGroupID = inputGroupID;
 	}
 
 	public Student inputData() {
@@ -29,8 +30,8 @@ public class InputStudentData {
 		listOfGroups.groupsList();
 
 		System.out.println("Enter the group number for the student from the list");
-		Long groupID = Long.valueOf(numbers.input());
+		Group groupID = inputGroupID.inputID();
 
-		return new Student(firstName, lastName, groupID);
+		return new Student(firstName, lastName, groupID.getGroupID());
 	}
 }

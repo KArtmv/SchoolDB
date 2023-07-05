@@ -10,4 +10,6 @@ public interface GroupDAO {
 	List<Group> listOfGroups();
 
 	List<CountStudentsAtGroup> counterStudentsAtGroups(int count);
+
+	boolean isValidGroupID(Group groupID);
 }

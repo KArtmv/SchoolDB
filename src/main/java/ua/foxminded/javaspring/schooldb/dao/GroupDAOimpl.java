@@ -1,5 +1,6 @@
 package ua.foxminded.javaspring.schooldb.dao;
 
+import java.sql.ResultSet;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,6 +20,7 @@ public class GroupDAOimpl implements GroupDAO {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
+	private final String SQL_CHECK_IS_GROUP_EXIST = "select group_id from groups where group_id = ?";
 	private final String SQL_GET_ALL = "select * from groups";
 	private final String SQL_GET_GROUP_BY_COUNT = "SELECT g.group_id, g.group_name, COUNT(s.student_id) AS student_count\n"
 			+ "FROM groups g\n"
@@ -37,5 +39,10 @@ public class GroupDAOimpl implements GroupDAO {
 	@Override
 	public List<CountStudentsAtGroup> counterStudentsAtGroups(int count) {
 		return jdbcTemplate.query(SQL_GET_GROUP_BY_COUNT, countMapper, count);
+	}
+	
+	@Override
+	public boolean isValidGroupID(Group groupID) {
+		return jdbcTemplate.query(SQL_CHECK_IS_GROUP_EXIST, ResultSet::next, groupID.getGroupID());
 	}
 }

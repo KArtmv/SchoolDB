@@ -17,4 +17,6 @@ public interface CourseDAO {
 	boolean addStudentToCourse(Student studentID, Course courseID);
 
 	boolean deleteStudentFromTheCourse(StudentAtCourse enrollmenID);
+
+	boolean isValidCourseID(Course courseID);
 }

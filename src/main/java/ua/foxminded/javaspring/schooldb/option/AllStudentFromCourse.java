@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import ua.foxminded.javaspring.schooldb.dao.CourseDAO;
-import ua.foxminded.javaspring.schooldb.input.InputNumbers;
+import ua.foxminded.javaspring.schooldb.input.InputCourseID;
 import ua.foxminded.javaspring.schooldb.model.Course;
 import ua.foxminded.javaspring.schooldb.model.StudentAtCourse;
 import ua.foxminded.javaspring.schooldb.output.ShowCoursesList;
@@ -15,12 +15,12 @@ public class AllStudentFromCourse {
 
 	private final CourseDAO courseDAO;
 	private final ShowCoursesList listOfCourses;
-	private final InputNumbers number;
+	private final InputCourseID inputCourseID;
 
-	public AllStudentFromCourse(CourseDAO courseDAO, ShowCoursesList listOfCourses, InputNumbers number) {
+	public AllStudentFromCourse(CourseDAO courseDAO, ShowCoursesList listOfCourses, InputCourseID inputCourseID) {
 		this.courseDAO = courseDAO;
 		this.listOfCourses = listOfCourses;
-		this.number = number;
+		this.inputCourseID = inputCourseID;
 	}
 
 	public void findAllStudentsAtCourse() {
@@ -28,9 +28,9 @@ public class AllStudentFromCourse {
 
 		listOfCourses.coursesList();
 
-		Course inputCourseID = new Course(Long.valueOf(number.input()));
+		Course courseID = inputCourseID.inputID();
 
-		List<StudentAtCourse> list = courseDAO.listOfStudentsAtCourse(inputCourseID);
+		List<StudentAtCourse> list = courseDAO.listOfStudentsAtCourse(courseID);
 
 		int counter = 1;
 

@@ -1,5 +1,6 @@
 package ua.foxminded.javaspring.schooldb.dao;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,8 @@ public class CourseDAOImpl implements CourseDAO {
 	private final String SQL_DELETE_STUDENT_FROM_COURSES = "delete from studenttocourse where student_id =?";
 	private final String SQL_ADD_STUDENTS_AT_COURSE = "INSERT INTO studenttocourse (student_id, course_id) VALUES (?, ?)";
 	private final String SQL_DELETE_STUDENT_FROM_THE_COURSE = "delete from studenttocourse where enrollment_id = ?";
+	private final String SQL_CHECK_IS_COURSE_EXIST = "select course_id from courses where course_id = ?";
+
 
 	CourseMapper mapper = new CourseMapper();
 	StudentAtCourseMapper toCourseMapper = new StudentAtCourseMapper();
@@ -57,5 +60,10 @@ public class CourseDAOImpl implements CourseDAO {
 	@Override
 	public boolean deleteStudentFromTheCourse(StudentAtCourse enrollmenID) {
 		return jdbcTemplate.update(SQL_DELETE_STUDENT_FROM_THE_COURSE, enrollmenID.getEnrollmentID()) > 0;
+	}
+
+	@Override
+	public boolean isValidCourseID(Course courseID) {
+		return jdbcTemplate.query(SQL_CHECK_IS_COURSE_EXIST, ResultSet::next, courseID.getCourseID());
 	}
 }
