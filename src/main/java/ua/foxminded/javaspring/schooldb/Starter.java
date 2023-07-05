@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import ua.foxminded.javaspring.schooldb.option.AddStudent;
@@ -15,7 +14,6 @@ import ua.foxminded.javaspring.schooldb.option.DeleteStudentFromCourse;
 import ua.foxminded.javaspring.schooldb.option.StudentCountChecker;
 
 @Component
-@Profile("!test")
 public class Starter {
 
 	private final Scanner scanner;
