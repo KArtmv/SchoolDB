@@ -9,6 +9,7 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import ua.foxminded.javaspring.schooldb.model.Group;
 import ua.foxminded.javaspring.schooldb.model.Student;
 import ua.foxminded.javaspring.schooldb.output.ShowGroupsList;
 
@@ -21,10 +22,10 @@ public class InputStudentDataTest {
 		InputText mockInputData = Mockito.mock(InputText.class);
 		Mockito.when(mockInputData.input()).thenReturn("test");
 
-		InputNumbers mockNumbers = Mockito.mock(InputNumbers.class);
-		Mockito.when(mockNumbers.input()).thenReturn(1);
+		InputGroupID mockGroupID = Mockito.mock(InputGroupID.class);
+		Mockito.when(mockGroupID.inputID()).thenReturn(new Group(1L));
 
-		InputStudentData dataOfStudent = new InputStudentData(mockListOfGroups, mockInputData, mockNumbers);
+		InputStudentData dataOfStudent = new InputStudentData(mockListOfGroups, mockInputData, mockGroupID);
 
 		Student result = dataOfStudent.inputData();
 
@@ -36,6 +37,6 @@ public class InputStudentDataTest {
 
 		verify(mockInputData, times(2)).input();
 		verify(mockListOfGroups).groupsList();
-		verify(mockNumbers).input();
+		verify(mockGroupID).inputID();
 	}
 }
