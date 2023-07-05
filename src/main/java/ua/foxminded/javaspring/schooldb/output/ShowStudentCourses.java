@@ -13,7 +13,7 @@ public class ShowStudentCourses {
 		int couter = 0;
 
 		for (StudentAtCourse course : courses) {
-			long enrollmentId = course.getEnrollmentID();
+			Long enrollmentID = course.getEnrollmentID();
 			String firstName = course.getFirstName();
 			String lastName = course.getLastName();
 			String courseName = course.getCourseName();
@@ -21,7 +21,7 @@ public class ShowStudentCourses {
 			if (couter == 0) {
 				System.out.println(String.format("List of courses of %s %s", firstName, lastName));
 			}
-			System.out.println(String.format("%d. %s. Description: %s", enrollmentId, courseName, courseDescription));
+			System.out.println(String.format("%d. %s. Description: %s", enrollmentID, courseName, courseDescription));
 			couter++;
 		}
 	}
