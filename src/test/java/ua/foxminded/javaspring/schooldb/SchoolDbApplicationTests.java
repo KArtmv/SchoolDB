@@ -1,7 +1,8 @@
 package ua.foxminded.javaspring.schooldb;
 
-import org.junit.platform.suite.api.SelectClasses;
+import org.junit.platform.suite.api.SelectPackages;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -9,8 +10,11 @@ import org.testcontainers.containers.PostgreSQLContainer;
 
 @SpringBootTest
 @ActiveProfiles("test")
-@SelectClasses({CourseDAOTests.class, StudentDAOTests.class, GroupDAOTests.class})
-abstract class SchoolDbApplicationTests {
+@SelectPackages("ua.foxminded.javaspring.schooldb")
+public abstract class SchoolDbApplicationTests {
+	
+	@MockBean
+	Starter starter;
 
 	static final PostgreSQLContainer<?> POSTGRES_CONTAINER;
 
