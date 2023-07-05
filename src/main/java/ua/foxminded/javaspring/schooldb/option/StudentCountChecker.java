@@ -25,9 +25,9 @@ public class StudentCountChecker {
 		int inputCount = numbers.input();
 		List<CountStudentsAtGroup> list = groupDAO.counterStudentsAtGroups(inputCount);
 
-		for (CountStudentsAtGroup course : list) {
-			int countAtGroup = course.getCount();
-			String groupName = course.getGroupName();
+		for (CountStudentsAtGroup group : list) {
+			int countAtGroup = group.getCount();
+			String groupName = group.getGroupName();
 
 			System.out.println(String.format("%d students at group: %s.", countAtGroup, groupName));
 		}
