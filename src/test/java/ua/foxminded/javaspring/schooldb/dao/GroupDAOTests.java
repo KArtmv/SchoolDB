@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,8 +34,8 @@ public class GroupDAOTests extends SchoolDbApplicationTests {
 		assertEquals(11, groupList.size());
 	}
 
-	@Sql("/StudentData.sql")
 	@Test
+	@Sql("/StudentData.sql")
 	void countStudentsAtGroup() {
 		List<CountStudentsAtGroup> expect = new ArrayList<>();
 		expect.add(new CountStudentsAtGroup(0, "Students without group"));
@@ -49,7 +50,7 @@ public class GroupDAOTests extends SchoolDbApplicationTests {
 		expect.add(new CountStudentsAtGroup(0, "WU-48"));
 
 		List<CountStudentsAtGroup> groupList = groupDAO.counterStudentsAtGroups(5);
-		assertThat(groupList).usingRecursiveFieldByFieldElementComparatorOnFields("countStudents", "groupName")
-				.containsExactlyInAnyOrderElementsOf(groupList);
+
+		assertThat(new HashSet<>(expect)).usingRecursiveComparison().isEqualTo(new HashSet<>(groupList));
 	}
 }
