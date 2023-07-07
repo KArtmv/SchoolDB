@@ -18,11 +18,6 @@ import ua.foxminded.javaspring.schooldb.rowmapper.StudentAtCourseMapper;
 public class StudentDAOImpl implements StudentDAO {
 	private final JdbcTemplate jdbcTemplate;
 
-	@Autowired
-	public StudentDAOImpl(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
-
 	private final String SQL_FIND_STUDENT_BY_ID = "select *\n"
 			+ "from students s\n"
 			+ "join groups g on s.group_id = g.group_id\n"
@@ -35,9 +30,13 @@ public class StudentDAOImpl implements StudentDAO {
 			+ "join courses c on sc.course_id = c.course_id\n" 
 			+ "where s.student_id=?";
 
-
 	private final RowMapper<Student> mapper = new StudentMapper();
 	private final RowMapper<StudentAtCourse> courseMapper = new StudentAtCourseMapper();
+	
+	@Autowired
+	public StudentDAOImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 
 	@Override
 	public Optional<Student> getStudentByID(Student studentID) {

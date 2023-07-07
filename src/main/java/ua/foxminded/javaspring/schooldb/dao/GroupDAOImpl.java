@@ -12,13 +12,8 @@ import ua.foxminded.javaspring.schooldb.rowmapper.CountStudentsAtGroupMapper;
 import ua.foxminded.javaspring.schooldb.rowmapper.GroupMapper;
 
 @Repository
-public class GroupDAOimpl implements GroupDAO {
+public class GroupDAOImpl implements GroupDAO {
 	private final JdbcTemplate jdbcTemplate;
-
-	@Autowired
-	public GroupDAOimpl(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
 
 	private final String SQL_CHECK_IS_GROUP_EXIST = "select group_id from groups where group_id = ?";
 	private final String SQL_GET_ALL = "select * from groups";
@@ -30,6 +25,11 @@ public class GroupDAOimpl implements GroupDAO {
 
 	private final GroupMapper mapper = new GroupMapper();
 	private final CountStudentsAtGroupMapper countMapper = new CountStudentsAtGroupMapper();
+	
+	@Autowired
+	public GroupDAOImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 
 	@Override
 	public List<Group> listOfGroups() {

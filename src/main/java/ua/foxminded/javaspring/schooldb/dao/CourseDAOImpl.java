@@ -17,11 +17,6 @@ import ua.foxminded.javaspring.schooldb.rowmapper.StudentAtCourseMapper;
 public class CourseDAOImpl implements CourseDAO {
 	private final JdbcTemplate jdbcTemplate;
 
-	@Autowired
-	public CourseDAOImpl(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
-
 	private final String SQL_GET_ALL = "select * from courses";
 	private final String SQL_GET_LIST_STUDENTS_AT_COURSE = "select *\n"
 			+ "from students s\n" 
@@ -33,10 +28,14 @@ public class CourseDAOImpl implements CourseDAO {
 	private final String SQL_DELETE_STUDENT_FROM_THE_COURSE = "delete from studenttocourse where enrollment_id = ?";
 	private final String SQL_CHECK_IS_COURSE_EXIST = "select course_id from courses where course_id = ?";
 
+	private final CourseMapper mapper = new CourseMapper();
+	private final StudentAtCourseMapper toCourseMapper = new StudentAtCourseMapper();
 
-	CourseMapper mapper = new CourseMapper();
-	StudentAtCourseMapper toCourseMapper = new StudentAtCourseMapper();
-
+	@Autowired
+	public CourseDAOImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+	
 	@Override
 	public List<Course> listOfCourse() {
 		return jdbcTemplate.query(SQL_GET_ALL, mapper);

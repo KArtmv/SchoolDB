@@ -25,7 +25,7 @@ public class GroupDAOTests extends SchoolDbApplicationTests {
 
 	@BeforeEach
 	void setUp() {
-		groupDAO = new GroupDAOimpl(jdbcTemplate);
+		groupDAO = new GroupDAOImpl(jdbcTemplate);
 	}
 
 	@Test
