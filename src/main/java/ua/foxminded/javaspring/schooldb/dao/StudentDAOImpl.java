@@ -51,7 +51,7 @@ public class StudentDAOImpl implements StudentDAO {
 
 	@Override
 	public boolean createStudent(Student student) {
-		return jdbcTemplate.update(SQL_ADD_NEW_STUDENT, student.getFirstName(), student.getLastrName(),
+		return jdbcTemplate.update(SQL_ADD_NEW_STUDENT, student.getFirstName(), student.getLastName(),
 				student.getGroupID()) > 0;
 	}
 

@@ -33,7 +33,7 @@ public class Student {
 		return firstName;
 	}
 
-	public String getLastrName() {
+	public String getLastName() {
 		return lastrName;
 	}
 
