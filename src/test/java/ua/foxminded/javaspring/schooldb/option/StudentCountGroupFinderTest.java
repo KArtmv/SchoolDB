@@ -39,7 +39,7 @@ public class StudentCountGroupFinderTest {
 	}
 
 	@Test
-	void checkStudentCountGroupFinder() {
+	void checkByCount_returnGroupsListWithCountStudentsLowerOrSameThenGiven_whenCounterStudentsAtGroups() {
 		List<CountStudentsAtGroup> studentsAtGroups = new ArrayList<>();
 		studentsAtGroups.add(new CountStudentsAtGroup(1, "test"));
 		studentsAtGroups.add(new CountStudentsAtGroup(2, "test"));

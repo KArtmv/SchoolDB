@@ -27,7 +27,7 @@ public class AddStudentTest {
 	InputStudentData mockDataOfstudent;
 
 	@InjectMocks
-	private AddStudent addStudent;
+	AddStudent addStudent;
 
 	@BeforeEach
 	public void init() {
@@ -35,7 +35,7 @@ public class AddStudentTest {
 	}
 
 	@Test
-	void checkAddStudent() {
+	void addStudent_returnTrue_whenStudentDataIsAdded() {
 		Student student = new Student("test", "test", 1L);
 
 		when(mockDataOfstudent.inputData()).thenReturn(student);

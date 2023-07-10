@@ -45,7 +45,7 @@ public class AllStudentFromCourseTest {
 	}
 
 	@Test
-	void checkAllStudentFromCourse() {
+	void findAllStudentsAtCourse_returnListOfStudentsAtCourse_whenGetAllStudentsFromGivenCourse() {
 		List<StudentAtCourse> courseList = new ArrayList<>();
 		courseList.add(new StudentAtCourse("test", "test", "test", "test"));
 		courseList.add(new StudentAtCourse("test", "test", "test", "test"));

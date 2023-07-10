@@ -41,7 +41,7 @@ public class DeleteStudentTest {
 	}
 
 	@Test
-	void checkDeleteStudent() {
+	void deleteStudent_returnTrue_whenStudentIsDeleted() {
 		when(mockInputStudentId.inputID()).thenReturn(new Student(1L));
 		when(mockCourseDAO.deleteStudentFromTheirAllCourses(any(Student.class))).thenReturn(true);
 		when(mockStudentDAO.deleteStudent(any(Student.class))).thenReturn(true);

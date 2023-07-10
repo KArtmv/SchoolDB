@@ -38,7 +38,7 @@ public class AddStudentToCourseTest {
 	InputNumbers mockInputNumbers;
 
 	@InjectMocks
-	private AddStudentToCourse studentToCourse;
+	AddStudentToCourse studentToCourse;
 
 	@BeforeEach
 	void init() {
@@ -46,7 +46,7 @@ public class AddStudentToCourseTest {
 	}
 
 	@Test
-	void checkAddStudentToCourse() {
+	void addStudentToCourse_retunrTrue_whenStudentAddedToCourse() {
 		when(mockInsertStudentID.inputID()).thenReturn(new Student(321L));
 		when(mockInputNumbers.input()).thenReturn(2);
 		when(mockCourseDAO.addStudentToCourse(any(Student.class), any(Course.class))).thenReturn(true);

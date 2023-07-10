@@ -59,7 +59,7 @@ public class DeleteStudentFromCourseTest {
 	}
 
 	@Test
-	void deleteFromCourse__returnStudentID_whenInputID() {
+	void deleteFromCourse_returnStudentID_whenInputID() {
 		when(mockInputStudentID.inputID()).thenReturn(new Student(1L));
 		Student inputStudentID = mockInputStudentID.inputID();
 
@@ -67,7 +67,7 @@ public class DeleteStudentFromCourseTest {
 	}
 
 	@Test
-	void deleteFromCourse__returnCorrectStudentID_whenInputID() {
+	void deleteFromCourse_returnCorrectStudentID_whenInputID() {
 		when(mockInputStudentID.inputID()).thenReturn(new Student(1L));
 		Student inputStudentID = mockInputStudentID.inputID();
 		
