@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:14.6:///studentDB&TC_REUSABLE=true
+    username: admin
+    password: admin
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 5
+  flyway:
+    locations: classpath:test-db/migration
