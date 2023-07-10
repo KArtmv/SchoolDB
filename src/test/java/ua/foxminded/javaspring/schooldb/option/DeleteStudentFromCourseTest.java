@@ -51,7 +51,7 @@ public class DeleteStudentFromCourseTest {
 	}
 
 	@Test
-	void deleteStudentFromTheCourse_returnTrue_whenIsDeleted() {
+	void deleteFromCourse_returnTrue_whenIsDeleted() {
 		when(mockCourseDAO.deleteStudentFromTheCourse(any(StudentAtCourse.class))).thenReturn(true);
 		boolean isDeleted = mockCourseDAO.deleteStudentFromTheCourse(new StudentAtCourse(3L));
 
@@ -59,7 +59,7 @@ public class DeleteStudentFromCourseTest {
 	}
 
 	@Test
-	void inputStudentID_returnNotNull_whenDataIsAre() {
+	void deleteFromCourse__returnStudentID_whenInputID() {
 		when(mockInputStudentID.inputID()).thenReturn(new Student(1L));
 		Student inputStudentID = mockInputStudentID.inputID();
 
@@ -67,7 +67,7 @@ public class DeleteStudentFromCourseTest {
 	}
 
 	@Test
-	void inputStudentID_shouldReturnCorrectData_whenDataIsValid() {
+	void deleteFromCourse__returnCorrectStudentID_whenInputID() {
 		when(mockInputStudentID.inputID()).thenReturn(new Student(1L));
 		Student inputStudentID = mockInputStudentID.inputID();
 		
@@ -75,7 +75,7 @@ public class DeleteStudentFromCourseTest {
 	}
 
 	@Test
-	void listOfCoursesOfStudent_returnNotNull_whenDataIsAre() {
+	void deleteFromCourse_reternListOfStudentAtCourses_whenListOfCoursesOfStudent() {
 		List<StudentAtCourse> courseList = new ArrayList<>();
 		courseList.add(new StudentAtCourse(1L, "test", "test", "test", "test"));
 		courseList.add(new StudentAtCourse(2L, "test", "test", "test", "test"));
@@ -89,7 +89,7 @@ public class DeleteStudentFromCourseTest {
 	}
 
 	@Test
-	void listOfCoursesOfStudent_shouldReturnCorrectData_whenDataIsValid() {
+	void deleteFromCourse_reternCorrectListOfStudentAtCourses_whenListOfCoursesOfStudent() {
 		List<StudentAtCourse> courseList = new ArrayList<>();
 		courseList.add(new StudentAtCourse(1L, "test", "test", "test", "test"));
 		courseList.add(new StudentAtCourse(2L, "test", "test", "test", "test"));
@@ -103,7 +103,7 @@ public class DeleteStudentFromCourseTest {
 	}
 
 	@Test
-	void inputNumber_returnNotNull_whenDataIsAre() {
+	void deleteFromCourse_returnCourseID_whenNumbersInput() {
 		when(mockNumbers.input()).thenReturn(3);
 		StudentAtCourse inputCourseID = new StudentAtCourse(Long.valueOf(mockNumbers.input()));
 		
@@ -111,7 +111,7 @@ public class DeleteStudentFromCourseTest {
 	}
 
 	@Test
-	void inputNumber_shouldReturnCorrectData_whenDataIsValid() {
+	void deleteFromCourse_returnCorrectCourseID_whenNumbersInput() {
 		when(mockNumbers.input()).thenReturn(3);
 		StudentAtCourse inputCourseID = new StudentAtCourse(Long.valueOf(mockNumbers.input()));
 		

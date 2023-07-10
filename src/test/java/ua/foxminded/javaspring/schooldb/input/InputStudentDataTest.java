@@ -13,14 +13,14 @@ import ua.foxminded.javaspring.schooldb.output.ShowGroupsList;
 public class InputStudentDataTest {
 
 	@Test
-	void dataOfStudent_returnNotNull_whenDataIsAre() {
+	void inputData_returnsStudentData_whenInputMethodCalled() {
 		Student result = inputDataOfStudent();
 
 		assertNotNull(result);
 	}
 
 	@Test
-	void dataOfStudent_shouldReturnCorrectData_whenDataIsValid() {
+	void inputData_returnCorrectStudentData_whenInputMethodCalled() {
 		Student result = inputDataOfStudent();
 
 		assertEquals("test", result.getFirstName());
