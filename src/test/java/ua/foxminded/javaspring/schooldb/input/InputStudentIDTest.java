@@ -26,7 +26,7 @@ public class InputStudentIDTest {
 	}
 
 	@Test
-	void checkInputStudentId() {
+	void inputID_returnStudentID_whenInputIDCalled() {
 		when(mockStudentID.inputID()).thenReturn(new Student(162L));
 		
 		Student studentID = mockStudentID.inputID();

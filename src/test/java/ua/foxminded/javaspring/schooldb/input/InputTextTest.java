@@ -16,7 +16,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class InputTextTest {
 
 	@Mock
-	private InputText inputData;
+	private InputText inputText;
 
 	@BeforeEach
 	void init() {
@@ -24,15 +24,15 @@ public class InputTextTest {
 	}
 
 	@Test
-		void checkInputNumbers() {
-			when(inputData.input()).thenReturn("test");
+		void input_returnString_whenInputText() {
+			when(inputText.input()).thenReturn("test");
 			
-			String result = inputData.input();
+			String result = inputText.input();
 			
 			assertNotNull(result);
 			assertEquals("test", result);
 			
-			verify(inputData).input();
+			verify(inputText).input();
 		
 	}
 }

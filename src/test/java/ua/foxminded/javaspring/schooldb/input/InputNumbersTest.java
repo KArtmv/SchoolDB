@@ -23,7 +23,7 @@ public class InputNumbersTest {
 	}
 
 	@Test
-	void checkInputNumbers() {
+	void input_retuntReceivedNumber_whenInputCalled() {
 		when(mockInputNumbers.input()).thenReturn(1);
 		
 		int result = mockInputNumbers.input();
